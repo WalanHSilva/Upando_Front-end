@@ -1,17 +1,23 @@
-import data from '../assets/Mercado_Livre.json' assert {type: 'json'};
+import data from '../assets/Webscraping.json' assert {type: 'json'};
 
 let loadCount = 21;
 
 let fetchedData = data
 
-function mountCard ({title, oldPrice, newPrice, discount, link}) {
-    return `<a class="container__content__promotions" href="${link}" target="_blank">
-    <img src="/assets/img/Matheus.jpeg" alt="${title}">
+const byStore = {
+    "Amazon" : "container__content__promotions--amazon",
+    "Mercado Livre" : "container__content__promotions--mercadoLivre",
+    "Americanas" : "container__content__promotions--americanas",
+}
+
+function mountCard ({titulo, preco_anterior, preco_novo, desconto, link, imagem, loja}) {
+    return `<a class="container__content__promotions ${byStore[loja]}" href="${link}" target="_blank">
+    <img src="${imagem}" alt="${titulo}">
     <div class="container__content__promotions__description">
-        <h2>${title}</h2>
+        <h2>${titulo}</h2>
         <p class="container__content__promotions__description__price">
-          <del>${oldPrice}</del>
-          <ins>${newPrice} <span>${discount}</span></ins>
+          <del>${preco_anterior}</del>
+          <ins>${preco_novo} <span>${desconto}</span></ins>
         </p>
     </div>
   </a>`
@@ -45,7 +51,7 @@ function search (event) {
     loadCount = 21
     document.querySelector(".container__load-more").classList.remove("container__load-more--hidden")
     
-    fetchedData = data.filter(item => item.title.toLowerCase().includes(event.target[0].value.toLowerCase()))
+    fetchedData = data.filter(item => item.titulo.toLowerCase().includes(event.target[0].value.toLowerCase()))
     fetchData()
 }
 
