@@ -82,7 +82,7 @@ body {
 
 .container__search-bar {
   padding-top: 30px;
-  max-width: 960px;
+  max-width: 945px;
   width: 100%;
   display: flex;
   gap: 15px;
@@ -97,6 +97,12 @@ body {
   padding-left: 5px;
   color: #fff;
 }
+
+.container__search-bar__text:hover {
+  background-color: rgba(0, 0, 0, 0.274);
+  transition: all 0.2s;
+}
+
 input::placeholder {
   color: rgba(255, 255, 255, 0.822);
 }
@@ -109,7 +115,75 @@ input::placeholder {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(0, 0, 0);
   font-size: 15px;
+  cursor: pointer;
 }
+
+.container__search-bar__button:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
+
+.container__filter {
+  width: 940px;
+}
+
+.menu {
+  justify-content: space-between;
+  list-style: none;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  gap: 25px;
+  border-radius: 4px;
+}
+
+.menu li {
+  position: relative;
+  /* border-right:1px solid #c0c0c0; */
+}
+
+.menu li a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  padding: 5px 10px;
+  display: block;
+}
+
+.menu li a:hover {
+  background: rgb(0, 0, 0);
+  color: #fff;
+  text-shadow: 0px 0px 5px #fff;
+}
+
+.menu li ul {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  background-color: #fff;
+  display: none;
+  padding: 0;
+  z-index: 1;
+}
+
+.menu li:hover ul,
+.menu li.over ul {
+  display: block;
+}
+
+.menu li ul li {
+  border: 1px solid #c0c0c0;
+  display: block;
+  width: 150px;
+}
+
+#nav__filter {
+  background-color: white;
+  color: black;
+}
+
 .container__content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -125,6 +199,8 @@ input::placeholder {
   flex-direction: column;
   width: 300px;
   height: 420px;
+  align-items: center;
+  position: relative;
 
   background-color: #fff;
   border-radius: 4px;
@@ -137,24 +213,23 @@ input::placeholder {
   gap: 15px;
 
   text-decoration: none;
-  
+
   /* TESTE ZOOM IMAGEM */
   overflow: hidden;
 
   max-width: 100%;
-	-moz-transition: all 0.3s;
-	-webkit-transition: all 0.3s;
-	transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .container__content__promotions:hover {
   -moz-transform: scale(1.1);
-	-webkit-transform: scale(1.1);
-	transform: scale(1.05);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .container__content__promotions > img {
-  object-fit: cover;
   width: 100%;
   height: 250px;
 }
@@ -163,25 +238,24 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
-
 
 a.container__content__promotions:link {
-  color:#000000;
-  text-decoration:none;
+  color: #000000;
+  text-decoration: none;
 }
 a.container__content__promotions:visited {
-  color:#686868;
-  text-decoration:none;
+  color: #000000;
+  text-decoration: none;
 }
 a.container__content__promotions:hover {
   /* color:#38b6ff; */
   color: #161616;
 }
 a.container__content__promotions:active {
-  color:#000000;
-  background-color:#f5f5f5;
+  color: #000000;
+  background-color: #f5f5f5;
 }
 
 .container__content__promotions__description > h2 {
@@ -201,10 +275,20 @@ a.container__content__promotions:active {
   gap: 5px;
 }
 
+#icon {
+  width: 30px;
+}
+
 .container__content__promotions__description__price > del {
-  color: rgba(0, 0, 0, .5);
+  /* color: rgba(0, 0, 0, .5); */
+  color: rgba(0, 0, 0, 0.61);
+  background-color: #e2e2e2c5;
+  
+  width: 4.5rem;
+  border-radius: 1px 10px 1px 10px;
+  
   text-decoration: line-through;
-  font-size: 12px;
+  font-size: 16px;
   font-family: proxnova-regular;
 }
 
@@ -217,23 +301,105 @@ a.container__content__promotions:active {
 }
 
 .container__content__promotions__description__price > ins > span {
-  color: #b81178;
-  font-size: 14px;
+  color: #0bd415;
+  
+  font-size: 20px;
   font-family: proxnova-light;
 }
 
+/* .container__content__promotions__description__price > ins > span:hover{
+  color: white;
+  background-color: #0bd415;
+} */
 
 .container__load-more {
   margin: 100px auto;
   align-self: center;
-  padding: 15px 10px;
+  padding: 12px 20px;
   background-color: white;
-  border-radius: 30px;
-  border: none;
+  border-radius: 4px;
   font-size: 20px;
   display: block;
+  border: none;
+}
+
+.container__load-more:hover {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  background-color: #000000;
+  color: #ffffff;
+  transition: all 0.3s;
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 .container__load-more--hidden {
   display: none;
+}
+
+.container__content__promotions img {
+  object-fit: contain;
+}
+
+.container__content__promotions::after{
+  content:"";
+  display: block;
+  width: 75px;
+  height: 25px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.container__content__promotions--amazon::after{
+  background-image: url("/assets/img/amazon-logo.png");
+}
+.container__content__promotions--americanas::after{
+  background-image: url("/assets/img/americanas-logo-1.png");
+}
+.container__content__promotions--mercadoLivre::after{
+  background-image: url("/assets/img/Mercado-Livre-logo-1-1-1024x288.png");
+  top: 5px;
+  width: 90px;
+}
+
+
+.container__to__top {
+  background: white;
+  position: fixed;
+  bottom: 16px;
+  right: 32px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #1f1f1f;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+.container__to__top.active {
+  bottom: 32px;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.material-symbols-outlined {
+  font-weight: 800;
+  color: white;
+}
+.container__to__top {
+  background: rgb(0, 79, 123);
+  background-image: linear-gradient(
+    145deg,
+    rgba(0, 79, 123, 1) 0%,
+    rgba(46, 40, 94, 1) 73%
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
