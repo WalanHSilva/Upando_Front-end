@@ -7,6 +7,7 @@ let fetchedData = data;
 let filters = {
   search: "",
   store: [],
+  order: "asc",
 };
 
 const classByStore = {
@@ -15,16 +16,26 @@ const classByStore = {
   Americanas: "container__content__promotions--americanas",
 };
 
-function compare(a, b) {
-  const firstProductPrice = Number(a.preco_novo.replace(".","").replace(",","."))
-  const secondProductPrice = Number(b.preco_novo.replace(".","").replace(",","."))
+function changeOrder(order) {
+  filters.order = order;
+  fetchData();
+}
+
+function comparePrice(a, b) {
+  let position = 0
+  const firstProductPrice = Number(
+    a.preco_novo.replace(".", "").replace(",", ".")
+  );
+  const secondProductPrice = Number(
+    b.preco_novo.replace(".", "").replace(",", ".")
+  );
   if (firstProductPrice < secondProductPrice) {
-    return 1;
+    position = -1;
   }
   if (firstProductPrice > secondProductPrice) {
-    return -1;
+    position = 1;
   }
-  return 0;
+  return filters.order==="asc"?position:position*-1;
 }
 
 function addFilterByStore(store) {
@@ -71,8 +82,8 @@ function mountCard({
     <div class="container__content__promotions__description">
         <h2>${titulo}</h2>
         <p class="container__content__promotions__description__price">
-          <del>R$${preco_anterior}</del>
-          <ins>R$${preco_novo} <span>${desconto}</span><img id="icon" src="https://cdn-icons-png.flaticon.com/512/726/726448.png"></ins>
+          <span>${desconto} OFF</span>
+          <ins><del>R$${preco_anterior}</del>R$${preco_novo} <img id="icon" src="../assets/img/cashIconFigma.png"></ins>
         </p>
     </div>
   </a>`;
@@ -85,7 +96,7 @@ function fetchData() {
   fetchedData
     .filter(byStore)
     .filter(byTitle)
-    .sort(compare)
+    .sort(comparePrice)
     .slice(0, loadCount)
     .forEach((item, index) => {
       if (index > 0) {
@@ -129,6 +140,13 @@ window.onload = () => {
   document
     .querySelector(".container__search-bar")
     .addEventListener("submit", search);
+
+  document
+    .querySelector("#maiorPreco")
+    .addEventListener("click", () => changeOrder("desc"));
+  document
+    .querySelector("#menorPreco")
+    .addEventListener("click", () => changeOrder("asc"));
 
   document.querySelectorAll("#stores .store-item").forEach((element) => {
     const store = element.getAttribute("data-store");
