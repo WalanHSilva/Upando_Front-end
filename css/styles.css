@@ -491,35 +491,35 @@ a.container__content__promotions:active {
   }
 }
 @media screen and (max-width: 739px) {
-  .menu span{
+  .menu span {
     padding: 5px;
   }
 }
 @media screen and (max-width: 724px) {
-  .menu span{
+  .menu span {
     font-size: 12px;
   }
 }
 @media screen and (max-width: 748px) {
-  .container__hero__img{
+  .container__hero__img {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .container{
+  .container {
     justify-content: center;
   }
-  .menu{
+  .menu {
     margin-top: 20px;
   }
 }
 @media screen and (max-width: 819px) {
-  .menu label{
+  .menu label {
     padding: 0;
   }
 }
 @media screen and (max-width: 957px) {
-  .menu{
+  .menu {
     width: fit-content;
   }
 }
