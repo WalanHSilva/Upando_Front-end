@@ -485,6 +485,18 @@ a.container__content__promotions:active {
   color: #fff;
 }
 
+
+@media screen and (max-width: 513px) {
+  .container__search-bar__text{
+    width: 350px;
+  }
+}
+@media screen and (max-width: 440px) {
+  .container__search-bar__text{
+    width: 250px;
+  }
+}
+
 @media screen and (max-width: 678px) {
   input[type="checkbox"]:checked + span {
     padding: 5px;
