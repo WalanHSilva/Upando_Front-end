@@ -22,7 +22,7 @@ function changeOrder(order) {
 }
 
 function comparePrice(a, b) {
-  let position = 0
+  let position = 0;
   const firstProductPrice = Number(
     a.preco_novo.replace(".", "").replace(",", ".")
   );
@@ -35,7 +35,7 @@ function comparePrice(a, b) {
   if (firstProductPrice > secondProductPrice) {
     position = 1;
   }
-  return filters.order==="asc"?position:position*-1;
+  return filters.order === "asc" ? position : position * -1;
 }
 
 function addFilterByStore(store) {
